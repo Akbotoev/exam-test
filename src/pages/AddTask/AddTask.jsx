@@ -1,28 +1,36 @@
-
 import { useEffect, useState } from 'react';
 import './AddTask.scss';
 
-
-  const AddTask = () => {
-    const [ quote, setQuote] = useState('')
+const AddTask = () => {
+    const [quote, setQuote] = useState('');
 
     useEffect(() => {
-        fetch('https://api.quotable.io')
-        .then((response) => response.json())
-        .then((data) =>  setQuote(data.content))
-    },[]);
+        fetch('https://api.quotable.io/random')
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Error: API not found');
+            }
+            return response.json();
+        })
+        .then((data) => setQuote(data.content))
+        .catch((error) => console.error('Fetch error:', error));
+    }, []);
 
-    const fetchNewQuite = () => {
-        fetch('https://api.quotable.io')
+    const fetchNewQuote = () => {
+        fetch('https://api.quotable.io/random')
         .then((response) => response.json())
         .then((data) => setQuote(data.content))
+        .catch((error) => console.error('Fetch error:', error));
     }
-    return(
-  <>
-  <p>Random Quite</p>
-  <h1>{quote}</h1>
-  <button onClick={fetchNewQuite}>New quite</button>
-  </>
-    )
+
+    return (
+        <>
+            <p>Random Quote</p>
+            <h1>{quote}</h1>
+            <button onClick={fetchNewQuote}>New quote</button>
+        </>
+    );
 }
+
 export default AddTask;
+
