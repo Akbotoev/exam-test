@@ -26,7 +26,6 @@ console.log(findMinMax([12,3,4,2,7,3,7,1]))
 function findDublicates(arr){
     for(let i = 0; i < arr.length; i++){
         if(arr == arr.length){
-            return arr.length[i]
-        }
+            return arr.length[i]         }
     }
 }
