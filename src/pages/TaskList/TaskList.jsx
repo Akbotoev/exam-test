@@ -9,9 +9,7 @@ export const TaskList = () => {
     const [tasks, setTasks] = useState([])
     const [ task, setTask] = useState('')
 
-    const incriment = () => setCount(count + 1);
-    const dicriment = () => setCount(count - 1);
-
+    
     const addTask = () => {
         setTasks([...tasks, task])
         setTask('')
@@ -25,13 +23,8 @@ export const TaskList = () => {
 return(
     <>
     <div className='container'>
-        <div className='container__count'>
-        <h1>Count:{count}</h1>
-        <button onClick={incriment}>Добавить</button>
-        <button onClick={dicriment}>Удалить</button>
-        </div>
-
         <div className='container__todo'>
+        <h1>New Task</h1>
             <input type='text'
             onChange={handleChange}
             placeholder='Add new task'/>
